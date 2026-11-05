@@ -1,0 +1,383 @@
+{
+  "base_commit": "69669dcb387c39525ac668d7ae8f7c540c2cd24b",
+  "target": {
+    "model": "49UJ651V-ZA",
+    "firmware": "06.10.75",
+    "webos": "3.9.3-62917"
+  },
+  "target_data_source": "user",
+  "status": "Home1.5.14_installed_manual_cold_navigation_accepted",
+  "tv_access": "root_SSH_authenticated_UID0",
+  "preserve": [
+    "design",
+    "themes",
+    "apps",
+    "inputs",
+    "debloat",
+    "optional_features",
+    "original_preflight"
+  ],
+  "implemented": [
+    "conditional_browser_adapter",
+    "read_only_capability_probe",
+    "local_browser_acceptance_harness",
+    "private_ARM_runtime_verified_TV",
+    "ELF_dependency_ABI_symbol_version_validation",
+    "private_runtime_wrapper_and_preload",
+    "conditional_Upstart_debloat",
+    "owned_service_supervisor",
+    "owned_legacy_installer_and_manifest"
+  ],
+  "developer_mode_initial_observation": {
+    "kernel": "4.4.3-208.drd4tv.3",
+    "architecture": "armv7l",
+    "bits": 32,
+    "libc": "2.19",
+    "node": "0.12.2",
+    "node_float_config": "softfp",
+    "uid": 5411,
+    "host_services_visible": false,
+    "luna_send_executable": false
+  },
+  "private_runtime": {
+    "node": "8.12.0",
+    "abi": "armhf",
+    "private_loader_and_libraries": true,
+    "static_dependency_closure_verified": true,
+    "TV_execution_verified": true,
+    "TV_verification_scope": [
+      "version_and_architecture",
+      "crypto_hash",
+      "child_Node",
+      "system_shell",
+      "temporary_directory_cleanup",
+      "test_process_group_absent"
+    ],
+    "full_service_actions_verified": false,
+    "DNS_TLS_verified": true,
+    "DNS_TLS_scope": "one HTTPS HEAD to repo.webosbrew.org, status 200 TLS1.2",
+    "upstream_bootstrap_integrated": false
+  },
+  "service_trial": {
+    "original_helper_version": "1.6.14",
+    "original_modules_loaded": 14,
+    "module_load_failures": 0,
+    "HTTP_loopback_startup_verified": true,
+    "CORS_denial_verified": true,
+    "TV_functionality_verified": false,
+    "Luna_calls_denied_in_Developer_Mode": true,
+    "temporary_cleanup_verified": true
+  },
+  "root_service_trial": {
+    "uid": 0,
+    "original_modules_loaded": 14,
+    "module_load_failures": 0,
+    "apps_returned": 34,
+    "inputs_returned": 6,
+    "foreground_query_verified": true,
+    "running_query_verified": true,
+    "HTTPS_status": 200,
+    "TLS_protocol": "TLSv1.2",
+    "temporary_cleanup_verified": true,
+    "launch_playback_voice_not_verified": true
+  },
+  "observed_host": {
+    "init": "Upstart",
+    "Home": "LSM ribbon; no com.webos.app.home app",
+    "home_log_event": "LSM NL_HOME_SHOWN",
+    "real_Home_press_correlated": true,
+    "legacy_observer": "Home v4 verified by Mario from another app and on repeated Home press; temporary trial removed",
+    "preview_app": "installed and closed; icons confirmed in real screenshot with helper active"
+  },
+  "visual_trial": {
+    "id": "com.cleanyourtv.home",
+    "version": "1.5.8",
+    "installed": true,
+    "user_report": "visible, focus moves, no clipping",
+    "temporary_service_cleanup_verified": true,
+    "app_stopped_verified": true,
+    "Home_or_boot_enabled": true
+  },
+  "legacy_integration_checks": {
+    "PC_selected_checks": 39,
+    "PC_nodes": [
+      "8.12.0",
+      "24.22.1"
+    ],
+    "TV_Linux_ARM_fixture_checks": 88,
+    "TV_fixture_cleanup_verified": true,
+    "full_upstream_suite": false
+  },
+  "home_trial": {
+    "accepted": false,
+    "persistent_changes": false,
+    "service_modules_loaded": 15,
+    "module_load_failures": 0,
+    "unexpected_standby_reason": "autoOff",
+    "kernel_reboot_observed": false,
+    "specific_timer_cause_proven": false,
+    "cleanup_verified": true,
+    "accepted_scope": "temporary first and repeated Home press, user confirmed LG ribbon closes with required appId/reason",
+    "current_Home_test_passed": true,
+    "current_cleanup_verified": true
+  },
+  "legacy_origin_fix": {
+    "observed_rejection": "file://com.cleanyourtv.home POST /api/frontend-ok",
+    "implemented_PC": true,
+    "TV_applied": true,
+    "HTTP_cases_per_runtime": 32,
+    "nodes": [
+      "8.12.0",
+      "24.22.1"
+    ],
+    "other_app_and_HTTP_origins_denied": true,
+    "TV_trial_verified": true,
+    "persistent_install": true
+  },
+  "pc_verification": {
+    "node": "8.12.0",
+    "selected_runner_checks": 120,
+    "browser": "38.0.2117.0",
+    "themes": 15,
+    "pages": 4,
+    "max_geometry_delta_css_px": 0.109375,
+    "reference": "unmodified_original_on_existing_Edge",
+    "tv_test": false
+  },
+  "not_verified": [
+    "complete_upstream_suite",
+    "real_boot",
+    "startup_Home_and_resume",
+    "power_off_on_target",
+    "voice",
+    "video_playback",
+    "physical_keyboard",
+    "TV_performance_and_input_lag"
+  ],
+  "install_ready": false,
+  "boot_supervisor": {
+    "temporary_start_stop_verified": true,
+    "leader_exit_recovery_verified": true,
+    "old_group_absent_verified": true,
+    "initial_failure_preserved": true,
+    "real_boot_verified": false,
+    "hook_installed": true
+  },
+  "legacy_debloat_trial": {
+    "real_apply_and_undo_verified": true,
+    "groups": [
+      "ads",
+      "tracking",
+      "logs"
+    ],
+    "not_present": [
+      "suggestions"
+    ],
+    "admanager_preserved": true,
+    "hosts_on_disk_unchanged": true,
+    "current_enabled": true,
+    "video_under_debloat_verified": false
+  },
+  "latest_PC_selected_checks": {
+    "runner_checks": 31,
+    "files": 7,
+    "nodes": [
+      "8.12.0",
+      "24.22.1"
+    ],
+    "evidence": "legacy-platform-check-ef3e9bb5",
+    "full_upstream_suite": false
+  },
+  "persistent_candidate": {
+    "payload_sha256": "d8f576e56bc190c2817ffd88f2c44daa8079a63a74c98c0d746f2b1933cb034d",
+    "apps_sha256": "dae799893b3db5d2b2f076f3deed93a73e67798d11f659083cf05ca6807c6104",
+    "stage_only": false,
+    "committed": true,
+    "hook_enabled": true,
+    "old_stage_removed": true,
+    "corrected_payload_sha256": "76d5551a7989a8d4a21ce9569d284ed23e834ea08b5b84d4e9388cf5174a88f0"
+  },
+  "persistent_apps": {
+    "home": "1.5.14",
+    "manager": "1.6.14",
+    "picker": "1.2.0",
+    "notify": "1.0.5",
+    "split_packages_verified": true
+  },
+  "minimal_profile": {
+    "requested": true,
+    "PC_verified_Chromium38": true,
+    "PC_verified_Edge": true,
+    "PC_es5_page_checks": 22,
+    "backend_selected_checks": 31,
+    "TV_installed": true,
+    "power_action_on_TV_tested": false,
+    "startup_and_resume_tested_on_TV": false,
+    "mouse_and_keyboard_physical_tested": false,
+    "idle_is_screen_on": true,
+    "PS4_input": "HDMI4",
+    "Xbox360_input": "HDMI3",
+    "SDR_game_mode_already_set_both": true,
+    "picture_settings_changed": false,
+    "TV_visual_capture_verified": true,
+    "TV_selected_linux_checks": 111,
+    "TV_selected_files": 9,
+    "TV_gallery_apps": 35,
+    "TV_favorite_icons_loaded": 4,
+    "full_previous_folder_retained": true,
+    "real_browser_callback_median_ms": 16.665,
+    "callback_measurement_is_not_input_lag_or_video_FPS": true,
+    "mouse_basic_human_confirmed": true,
+    "keyboard_physical_tested": false,
+    "vertical_navigation_human_confirmed": true,
+    "vertical_order": [
+      "favorites",
+      "HDMI",
+      "all_apps"
+    ],
+    "idle_and_wake_human_confirmed": true,
+    "repeated_Home_closes_LG_bar_human_confirmed": true,
+    "LG_bar_brief_flash_not_eliminated": true,
+    "style": "cozy-tech",
+    "favorite_icon_type": "inline_SVG",
+    "supplied_photo": true,
+    "clock_centered": true,
+    "compact_HDMI_side": "right",
+    "current_style_human_confirmed": false,
+    "previous_1_5_11_layout_human_confirmed": true,
+    "favorite_glyph_px": 46,
+    "favorite_bubble_px": 54,
+    "settings_Home_cozy": true,
+    "gallery_cozy": true,
+    "gallery_columns": 6
+  },
+  "minimal_upgrade": {
+    "payload_sha256": "095d778c502cd047a54f96a42599e1b8dbe67286434563f6c5e63da764a0c708",
+    "home_sha256": "696bf044328d3f454d0fd88c61b5f9b2bfaa0ff01f19a901a4359eba30d743fb",
+    "committed": true,
+    "evidence": "tv-minimal-private-20261103a",
+    "rollback_exercised": false
+  },
+  "navigation_upgrade": {
+    "version": "1.5.10",
+    "committed": true,
+    "human_confirmed": true,
+    "payload_sha256": "93fc9c692bd7dfa0fd1c58aa88309ed26bf66b6a9213bcadafb06f3c913a8c60",
+    "home_sha256": "197dccc66b106a3df0d610257437a4d5e55bdac29959b6b57658c44e2fdc973d",
+    "protected_changes": [
+      "app/index.html",
+      "app/version.json"
+    ],
+    "backend_and_runtime_unchanged": true,
+    "PC_page_checks": 22,
+    "Chromium38_and_Edge_scenarios_pass": true,
+    "initial_browser_startup_timeout_retained": "minimal38-1793740604604",
+    "evidence": "tv-nav-private-20261103a",
+    "previous_folder_retained": true
+  },
+  "transition_study": {
+    "date": "2026-11-04",
+    "TV_modified": false,
+    "native_surface_wipe_ms": 500,
+    "native_bar_animation_ms": 200,
+    "PC_candidate_only": true,
+    "candidate_sha256": "26cd1fc70859d66feac806882e237f3c4cf7a591a98e5b64ef132dbd96e78680",
+    "native_Qt_loader_tested": false,
+    "full_bar_interception_tested": false,
+    "lginput2_present": true,
+    "inputhook_injected": false,
+    "independent_rollback_controller_prepared": false,
+    "evidence": "zero-wipe-PC-candidate-20261104d",
+    "deferred_by_user": true
+  },
+  "clock_correction": {
+    "previous_useNetworkTime": false,
+    "useNetworkTime": true,
+    "timezone": "Europe/Madrid",
+    "verified": true,
+    "effective_source": "sdp",
+    "NTP_requested_but_not_proven_source": true,
+    "before_and_after_evidence": "clock-sync-1793810611793",
+    "subsequent_reading": "root-observation-31605994",
+    "energy_cycle_verified": false
+  },
+  "cozy_upgrade": {
+    "version": "1.5.11",
+    "committed": true,
+    "payload_sha256": "d6f887737ca8d88486cf035265f645170c7e680ba602b4d9e18ef2195c672340",
+    "home_sha256": "8dbd2a5fddf171b7d13f542e1f902c61dc7c96cf54e5b88e7df90073bdbf85d9",
+    "photo_sha256": "634a7732f44b6462dc6ed3de32b765a3535a7cab21111e9bcd2c0b4c04b7bc57",
+    "backend_and_runtime_unchanged": true,
+    "PC_page_checks": 22,
+    "Chromium38_and_Edge_scenarios_pass": true,
+    "evidence": "tv-cozy-private-20261104a",
+    "real_capture": "own-app-capture-5db1e90af2b6a56062fa",
+    "previous_folder_retained": true
+  },
+  "style_patch": {
+    "version": "1.5.12",
+    "installed": true,
+    "protected_changes": [
+      "app/index.html",
+      "app/version.json"
+    ],
+    "full_manifest_verified": true,
+    "service_continuity_verified": true,
+    "previous_Home_and_package_backed_up": true,
+    "worker_ES5_and_six_guard_contracts_pass": true,
+    "PC_page_checks": 22,
+    "Chromium38_and_Edge_pass": true,
+    "real_captures": [
+      {
+        "image": "C:\\Users\\Maher\\JARVIS\\output\\cleanyourtv-study-20261102\\own-app-capture-70b91da0bb815bb99c8a\\screen.png",
+        "bytes": 3309622,
+        "sha256": "b78d3105d59ed8ae35a820db1d14074f22ff0332d1b9756b779382786fca71d2",
+        "view": "home"
+      },
+      {
+        "image": "C:\\Users\\Maher\\JARVIS\\output\\cleanyourtv-study-20261102\\own-app-capture-87f74b7a0366ea0ed239\\screen.png",
+        "bytes": 2338308,
+        "sha256": "6ce3dcc9b1742dd3a45bee6519a45f6e022a2271655ee07cc18fe635875bdff8",
+        "view": "settings"
+      },
+      {
+        "image": "C:\\Users\\Maher\\JARVIS\\output\\cleanyourtv-study-20261102\\own-app-capture-669b7524e02d537c11e6\\screen.png",
+        "bytes": 2149208,
+        "sha256": "f3ea241875f39a95ee493bcd1a51e2e4b8d70f8fb1ac403904acaeb725142a70",
+        "view": "gallery"
+      }
+    ],
+    "evidence": "tv-style-private-20261104b",
+    "withdrawn_candidate_remote_removed": true,
+    "full_TV_rollback_exercised": false,
+    "human_aesthetic_accepted": true,
+    "human_navigation_latency_issue_reported": true
+  },
+  "performance_patch": {
+    "version": "1.5.14",
+    "installed": true,
+    "evidence": "tv-fast-private-20261104b",
+    "build_evidence": "fast-home-20261104c",
+    "only_protected_files_changed": [
+      "app/index.html",
+      "app/version.json"
+    ],
+    "full_manifest_verified": true,
+    "service_continuity_verified": true,
+    "previous_Home_and_IPK_backed_up": true,
+    "worker_TV_rollback_exercised": false,
+    "PC_35_app_Chromium38_and_Edge_pass": true,
+    "manual_1_5_13_improved_but_cold_slowness": true,
+    "manual_1_5_14_confirmation_pending": false,
+    "final_readonly_evidence": "minimal-live-observation-1793815480359",
+    "gallery_images_loaded": 31,
+    "gallery_cards": 35,
+    "final_idle_RAF_median_ms": 16.665,
+    "scope": "browser callback cadence, not remote-to-photon or physical panel FPS",
+    "picture_settings_changed": false,
+    "native_transitions_still_deferred": true,
+    "no_synthetic_navigation_after_user_report": true,
+    "manual_cold_navigation_accepted": true,
+    "human_feedback": "Ya responde fluido desde el principio"
+  }
+}

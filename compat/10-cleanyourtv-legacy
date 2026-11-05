@@ -1,0 +1,7 @@
+#!/bin/sh
+# Homebrew Channel runs this only outside its own failsafe. Remove this owned hook to undo startup.
+L=/media/developer/cleanyourtv
+[ -f "$L/LEGACY_OWNER" ] && [ -f "$L/LEGACY_BOOT_ENABLED" ] || exit 0
+# Never delay or fail Homebrew Channel's own failsafe reset.
+nohup sh "$L/legacy-start.sh" >> /tmp/cleanyourtv-legacy-boot.log 2>&1 </dev/null &
+exit 0

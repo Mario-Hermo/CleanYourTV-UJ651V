@@ -1,0 +1,57 @@
+/* Cozy Home: original photo, warm vector marks and a quiet bottom dock. */
+.mi-backdrop { background:#241c23 url("cozy-wallpaper.jpg") center center no-repeat; background-size:cover; }
+.mi-backdrop:after { content:""; position:absolute; left:0; top:0; width:100%; height:100%; background:linear-gradient(180deg,rgba(15,10,16,.12),rgba(15,10,16,.25) 62%,rgba(15,10,16,.66)); }
+.mi-clock { top:438px; color:#f5e9e2; text-shadow:0 2px 24px rgba(12,8,14,.36); }
+.mi-time { font-size:136px; line-height:150px; letter-spacing:-5px; font-weight:300; }
+.mi-date { margin-top:14px; font-size:21px; line-height:28px; letter-spacing:.3px; color:rgba(247,231,222,.72); }
+.mi-favorites { top:864px; left:660px; width:600px; height:112px; }
+.mi-card { width:104px; height:98px; border:1px solid transparent; border-radius:20px; background:transparent; color:#f0dfd5; transition:transform 95ms ease,background-color 95ms ease; }
+.mi-card+.mi-card { margin-left:20px; }
+.mi-card .mi-label { bottom:9px; font-size:14px; color:rgba(247,231,222,.75); }
+.mi-cozy-mark { position:absolute; left:24px; top:5px; width:54px; height:54px; display:flex; align-items:center; justify-content:center; border-radius:17px; border:1px solid rgba(246,215,198,.14); background:rgba(41,27,33,.43); box-shadow:0 4px 12px rgba(10,6,12,.1); }
+.mi-cozy-mark svg { width:46px; height:46px; }
+.mi-brand-0 { color:#e5b1ac; }
+.mi-brand-1 { color:#d8d8d0; }
+.mi-brand-2 { color:#d4c3dc; }
+.mi-brand-3 { color:#dfb6a5; }
+.mi-focus { border-color:rgba(247,225,207,.6)!important; background-color:rgba(246,216,197,.1)!important; transform:translateY(-2px); }
+body.minimal-ui .mi-card,body.minimal-ui .mi-port { transition:none!important; }
+body.minimal-ui .mi-focus { transform:none!important; }
+/* Stable GPU layers avoid repainting the full photograph for every focus move. */
+body.minimal-ui #minimal-home .mi-backdrop,body.minimal-ui #minimal-home .mi-main,
+body.minimal-ui #minimal-home .mi-gallery-scroll,body.minimal-ui #minimal-home .mi-card {
+  transform:translateZ(0)!important; -webkit-transform:translateZ(0)!important; backface-visibility:hidden;
+}
+.mi-hdmi { top:910px; left:1515px; width:300px; height:42px; }
+.mi-hdmi button { width:32px; height:38px; color:rgba(247,225,211,.65); font-size:22px; }
+.mi-hdmi .mi-port { width:236px; height:40px; border:1px solid rgba(246,221,205,.18); border-radius:20px; background:rgba(36,25,32,.36); font-size:14px; color:#ebd8cd; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.mi-port svg { width:16px; height:16px; margin-right:6px; }
+.mi-port-status { top:48px; width:300px; font-size:11px; color:rgba(247,225,211,.43); }
+.mi-settings { left:1792px; top:68px; width:58px; height:46px; border:1px solid rgba(246,221,205,.2); border-radius:18px; background:rgba(36,25,32,.28); color:#ebd8cd; }
+.mi-settings svg { width:20px; height:20px; }
+.mi-settings-hit { left:1700px; top:0; width:220px; height:170px; }
+.mi-down { top:1017px; font-size:13px; color:rgba(247,225,211,.43); }
+/* Keep decoded icons and layers resident: tiny opacity still rasterizes on Chromium38. */
+.mi-gallery { display:block; opacity:.001; pointer-events:none; background:rgba(24,17,24,.52); }
+.mi-gallery-on .mi-gallery { opacity:1; pointer-events:auto; }
+.mi-idle-on .mi-gallery { display:block; opacity:0; pointer-events:none; }
+.mi-gallery:before { content:""; position:absolute; left:120px; top:64px; width:1680px; height:944px; border:1px solid rgba(246,221,205,.17); border-radius:32px; background:rgba(35,25,32,.58); box-shadow:0 20px 60px rgba(12,6,14,.22); pointer-events:none; }
+.mi-gallery h1 { color:#f0dfd5; font-size:38px; }
+.mi-gallery-hint { top:92px; padding:12px 20px; border:1px solid rgba(246,221,205,.13); border-radius:18px; background:rgba(246,216,197,.04); color:rgba(247,225,211,.72); font-size:17px; }
+.mi-gallery-scroll { height:768px; }
+.mi-gallery-scroll::-webkit-scrollbar { width:5px; }
+.mi-gallery-scroll::-webkit-scrollbar-thumb { background:rgba(246,221,205,.22); border-radius:3px; }
+.mi-grid .mi-card { margin:0 20px 28px 0; border-radius:26px; background:rgba(246,216,197,.045); border-color:rgba(246,221,205,.11); }
+.mi-grid .mi-cozy-mark { left:81px; top:18px; width:80px; height:80px; border-radius:24px; background:rgba(41,27,33,.45); }
+.mi-grid .mi-cozy-mark svg { width:68px; height:68px; }
+.mi-grid .mi-cozy-mark img { position:static; width:64px; height:64px; border-radius:18px; }
+.mi-grid .mi-card .mi-label { font-size:18px; }
+.mi-idle-clock { color:#574b50; }
+body.minimal-ui #ov { background:rgba(17,11,18,.46); color:#f2e0d4; }
+body.minimal-ui #ov .panel { width:820px; padding:34px; border:1px solid rgba(246,221,205,.2); border-radius:32px; background:rgba(39,28,36,.94); box-shadow:0 20px 70px rgba(12,6,14,.3); }
+body.minimal-ui #ov h2 { font-size:34px; font-weight:400; letter-spacing:.2px; color:#f4e3d8; margin-bottom:18px; }
+body.minimal-ui #ov .row { height:78px; padding:0 22px; border:1px solid rgba(246,221,205,.1); border-radius:20px; background:rgba(246,216,197,.045); color:#ead8cd; box-shadow:none; font-size:24px; font-weight:400; }
+body.minimal-ui #ov .row svg { width:40px; height:40px; padding:6px; border:1px solid rgba(246,221,205,.13); border-radius:13px; background:rgba(246,216,197,.05); color:#e8c8b2; }
+body.minimal-ui #ov .row .st { font-size:16px; line-height:20px; white-space:normal; text-overflow:clip; color:rgba(247,225,211,.6); max-width:48%; opacity:1; }
+body.minimal-ui #ov .row.f { border-color:rgba(247,225,207,.55); background:rgba(246,216,197,.15); color:#f5e3d6; }
+body.minimal-ui #ov .more,body.minimal-ui #ov .mnote { color:rgba(247,225,211,.6); }

@@ -1,0 +1,46 @@
+'use strict';
+const assert=require('assert');
+const legacy=require('../../helper/legacyhome');
+const prefix='2026-11-03T12:27:44Z [1888.025] user.info surface-manager-starfish [] LSM NL_HOME_SHOWN ';
+async function main(){
+ assert.strictEqual(legacy.parse(prefix+'{"CLOCK":1888.25,"foregroundId":"netflix"}').CLOCK,1888.25);
+ assert.strictEqual(legacy.parse(prefix+'{"CLOCK":"1888"}'),null);
+ assert.strictEqual(legacy.parse(prefix+'broken'),null);
+ assert.strictEqual(legacy.parse('unrelated NL_HOME_SHOWN {"CLOCK":1888}'),null);
+ console.log('ok   recognizes measured LSM event and rejects malformed or unrelated log records');
+ let disabled=false, calls=[];
+ const home=legacy.create({luna:async (uri,payload)=>{calls.push({uri,payload});return {returnValue:true};}}, {disabled:()=>disabled,uptime:()=>1900});
+ assert.strictEqual(await home.observe(prefix+'{"CLOCK":1800}'),false);
+ assert.strictEqual(await home.observe(prefix+'{"CLOCK":2000}'),false);
+ assert.strictEqual(calls.length,0);
+ console.log('ok   ignores stale and future events rather than replaying log history');
+ disabled=true;assert.strictEqual(await home.observe(prefix+'{"CLOCK":1899}'),false);assert.strictEqual(calls.length,0);
+ disabled=false;assert.strictEqual(await home.observe(prefix+'{"CLOCK":1899}'),true);
+ assert.strictEqual(calls.length,2);assert.strictEqual(calls[0].payload.id,'com.cleanyourtv.home');assert.strictEqual(calls[1].uri,'luna://com.webos.surfacemanager.systemui/closeAllSystemUI');assert.deepStrictEqual(calls[1].payload,{appId:'com.cleanyourtv.home',reason:'launch'});
+ assert.strictEqual(await home.observe(prefix+'{"CLOCK":1899}'),false);
+ console.log('ok   LG Home selection prevents launch and duplicate event is suppressed');
+ let release;
+ const waiting=legacy.create({luna:()=>new Promise(resolve=>{release=resolve;})},{disabled:()=>false,uptime:()=>1900});
+ const first=waiting.observe(prefix+'{"CLOCK":1898}');
+ assert.strictEqual(await waiting.observe(prefix+'{"CLOCK":1900}'),false);
+ release({returnValue:true});
+ // The launch is followed by native UI close; release that response too.
+ await Promise.resolve();await Promise.resolve();release({returnValue:true});await first;
+ console.log('ok   avoids concurrent launch requests while SAM is responding');
+ let n=0;
+ const refused=legacy.create({luna:async(uri)=>{n++;if(n===2)throw new Error('UI close unavailable');return {returnValue:true};}},{disabled:()=>false,uptime:()=>1900});
+ assert.strictEqual(await refused.observe(prefix+'{"CLOCK":1899}'),true);assert.strictEqual(n,2);
+ assert.strictEqual(await refused.observe(prefix+'{"CLOCK":1896}'),false);assert.strictEqual(n,2);
+ console.log('ok   refused UI close still launches and stale UI events cause no action');
+ let wakeCalls=0;
+ const wakeLine='2026-11-03T13:25:00Z [1899.05] user.info tvpowerd [] tvpowerd NL_POWER_STATE {"old":"Suspend","new":"Active","PowerOnReason":"remoteKey"}';
+ assert.strictEqual(legacy.parseWake(wakeLine).CLOCK,1899.05);
+ const wake=legacy.create({config:{options:()=>({startOnHome:true})},luna:async()=>{wakeCalls++;return {returnValue:true};}},{disabled:()=>false,uptime:()=>1900});
+ assert.strictEqual(await wake.observe(wakeLine),true);assert.strictEqual(wakeCalls,2);
+ const stockWake=legacy.create({config:{options:()=>({startOnHome:false})},luna:async()=>{throw new Error('must not launch');}},{disabled:()=>false,uptime:()=>1900});
+ assert.strictEqual(await stockWake.observe(wakeLine),false);
+ assert.strictEqual(legacy.parseWake(wakeLine.replace('"Suspend"','"Active"')),null);
+ assert.strictEqual(legacy.parseWake(wakeLine.replace('"Suspend"','"ActiveStandby"')).wake,true);
+ console.log('ok   measured resume event opens Home only with explicit startup option');
+}
+main().catch(e=>{console.error(e.stack);process.exitCode=1;});
